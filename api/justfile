@@ -1,0 +1,14 @@
+run:
+    uv run python src/manage.py runserver 0.0.0.0:8001
+
+migrate:
+    uv run python src/manage.py migrate
+
+makemigrations:
+    uv run python src/manage.py makemigrations
+
+makemessages:
+    uv run python src/manage.py makemessages -l fr && uv run python src/manage.py makemessages -l en && uv run python src/manage.py makemessages -l ar
+
+compilemessages:
+    uv run python src/manage.py compilemessages

@@ -1,0 +1,112 @@
+# ==========================================
+# 1. Python / FastAPI Dependencies & Runtime
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+ENV.venv/
+pythonenv/
+
+# FastAPI / Starlette specific log spikes
+*.log
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local databases (e.g., SQLite files generated during local dev)
+*.db
+*.sqlite3
+
+# ==========================================
+# 2. JavaScript / React Dependencies & Builds
+# ==========================================
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Production Build Directories (Vite / Create React App / Next.js)
+dist/
+build/
+out/
+.next/
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor/Tools local configurations
+.eslintcache
+.stylelintcache
+.prettiercache
+
+# ==========================================
+# 3. Environment Variables & Secrets (CRITICAL)
+# ==========================================
+# Never commit your private keys, tokens, or API secrets to Git!
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+
+# ==========================================
+# 4. OS & IDE Specific Clutter
+# ==========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+
+# IDEs & Editors (VS Code, PyCharm/WebStorm, Helix)
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+.helix/
+
+api/.venv
+ui/node_modules

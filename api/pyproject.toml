@@ -1,0 +1,10 @@
+[project]
+name = "webforindustry-website"
+version = "0.1.0"
+description = "the website for the webforindustry project"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard]>=0.136.1",
+    "sqlalchemy>=2.0.50",
+]
