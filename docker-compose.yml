@@ -1,33 +1,3 @@
-#services:
-#  ui:
-#    build: ./ui
-#    security_opt:
-#          - apparmor:unconfined
-#    ports:
-#      - "3000:3000"
-#    volumes:
-#      - ./ui:/app
-#      - /app/node_modules
-#    environment:
-#      - NODE_ENV=development
-#    # This command is for development, for production you might want to use the Nginx CMD from the Dockerfile.dev
-#    command: npm start
-#
-#  api:
-#    build: ./api
-#    security_opt:
-#          - apparmor:unconfined
-#    ports:
-#      - "8001:8001"
-#    volumes:
-#      - ./api:/app
-#    environment:
-#      - PYTHONUNBUFFERED=1
-#    command: uv run fastapi dev app/main.py --host 0.0.0.0 --port 8001
-
-
-#version: "3.8"
-
 services:
   ui:
     build:
@@ -38,9 +8,9 @@ services:
 
     ports:
       - "3000:3000"
-    volumes:
-      - ./ui:/app                        # hot-reload: sync local files into container
-      - /app/node_modules             # keep container's node_modules untouched
+#    volumes:
+#      - ./ui:/app                        # hot-reload: sync local files into container
+#      - /app/node_modules             # keep container's node_modules untouched
     environment:
       - CHOKIDAR_USEPOLLING=true      # needed for hot-reload on some OS (Windows/WSL)
       - WATCHPACK_POLLING=true        # needed for Webpack 5 / CRA
@@ -55,9 +25,9 @@ services:
       - apparmor:unconfined
     ports:
       - "8001:8001"
-    volumes:
-      - ./api:/app                  # hot-reload: sync local files into container
-      - /app/.venv              # keep container's virtualenv untouched
+#    volumes:
+#      - ./api:/app                  # hot-reload: sync local files into container
+#      - /app/.venv              # keep container's virtualenv untouched
     environment:
       - ENV=development
 #    env_file:
