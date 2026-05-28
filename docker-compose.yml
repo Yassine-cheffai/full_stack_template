@@ -1,8 +1,8 @@
 services:
-  frontend:
+  ui:
     build: ./ui
     ports:
-      - "80:80"
+      - "3000:3000"
     volumes:
       - ./ui:/app
       - /app/node_modules
@@ -11,7 +11,7 @@ services:
     # This command is for development, for production you might want to use the Nginx CMD from the Dockerfile
     command: npm start
 
-  backend:
+  api:
     build: ./api
     ports:
       - "8000:8000"

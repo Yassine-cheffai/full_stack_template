@@ -8,7 +8,7 @@ COPY package-lock.json ./
 RUN npm install
 
 COPY . .
-
+EXPOSE 3000
 RUN npm run build
 
 # Stage 2: Serve the React application with Nginx

@@ -1,2 +1,1 @@
-    "fastapi[standard]>=0.136.1",
-    "sqlalchemy>=2.0.50",
+https://webforindustry.com,https://www.webforindustry.com
