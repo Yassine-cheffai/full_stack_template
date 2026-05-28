@@ -21,15 +21,11 @@ COPY pyproject.toml uv.lock /_lock/
 
 # Synchronize dependencies.
 # This layer is cached until uv.lock or pyproject.toml change.
-RUN --mount=type=cache,target=/root/.cache \
-    cd /_lock && \
-    uv sync \
-    --frozen \
-    --no-install-project
+RUN cd /_lock && uv sync  --frozen --no-install-project
 
 # copy project
 COPY . .
 
 EXPOSE 8000
 
-CMD ["uv", "run", "fastapi", "dev", "app/main.py",  "--host", "0.0.0.0", "--port", "8000"]
+#CMD ["uv", "run", "fastapi", "dev", "app/main.py",  "--host", "0.0.0.0", "--port", "8000"]

@@ -1,0 +1,22 @@
+services:
+  frontend:
+    build: ./ui
+    ports:
+      - "80:80"
+    volumes:
+      - ./ui:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    # This command is for development, for production you might want to use the Nginx CMD from the Dockerfile
+    command: npm start
+
+  backend:
+    build: ./api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./api:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: uv run fastapi dev app/main.py --host 0.0.0.0 --port 8000

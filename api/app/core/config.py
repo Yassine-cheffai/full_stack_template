@@ -2,7 +2,7 @@ from pydantic_settings import BaseSettings
 
 
 class Config(BaseSettings):
-    app_name: str = "web for industry"
+    app_name: str = "API"
     db_user: str = ""
     db_password: str = ""
     db_name: str = "test.db"
