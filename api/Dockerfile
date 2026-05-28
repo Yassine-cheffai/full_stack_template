@@ -1,31 +1,17 @@
-# pull official base image
-FROM python:3.13-slim
+FROM python:3.12-slim
 
-# set work directory
+# Install uv
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/local/bin/
+
 WORKDIR /app
 
-# set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
-    UV_LINK_MODE=copy \
-    UV_PYTHON_DOWNLOADS=never \
-    UV_PROJECT_ENVIRONMENT=/app/.venv
+# Install dependencies first (layer caching)
+COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen --no-cache
 
-# install uv
-COPY --from=ghcr.io/astral-sh/uv:0.8.14 /uv /uvx /bin/
-
-# Since there's no point in shipping lock files, we move them
-# into a directory that is NOT copied into the runtime image.
-# The trailing slash makes COPY create `/_lock/` automagically.
-COPY pyproject.toml uv.lock /_lock/
-
-# Synchronize dependencies.
-# This layer is cached until uv.lock or pyproject.toml change.
-RUN cd /_lock && uv sync  --frozen --no-install-project
-
-# copy project
+# Copy source code
 COPY . .
 
 EXPOSE 8001
 
-#CMD ["uv", "run", "fastapi", "dev", "app/main.py",  "--host", "0.0.0.0", "--port", "8000"]
+#CMD ["uv", "run", "fastapi", "dev", "main.py", "--host", "0.0.0.0", "--port", "8001"]
