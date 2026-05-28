@@ -1,6 +1,8 @@
 services:
   ui:
     build: ./ui
+    security_opt:
+          - apparmor:unconfined
     ports:
       - "3000:3000"
     volumes:
@@ -13,10 +15,12 @@ services:
 
   api:
     build: ./api
+    security_opt:
+          - apparmor:unconfined
     ports:
-      - "8000:8000"
+      - "8001:8001"
     volumes:
       - ./api:/app
     environment:
       - PYTHONUNBUFFERED=1
-    command: uv run fastapi dev app/main.py --host 0.0.0.0 --port 8000
+    command: uv run fastapi dev app/main.py --host 0.0.0.0 --port 8001

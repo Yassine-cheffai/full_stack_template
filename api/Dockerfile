@@ -26,6 +26,6 @@ RUN cd /_lock && uv sync  --frozen --no-install-project
 # copy project
 COPY . .
 
-EXPOSE 8000
+EXPOSE 8001
 
 #CMD ["uv", "run", "fastapi", "dev", "app/main.py",  "--host", "0.0.0.0", "--port", "8000"]
