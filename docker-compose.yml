@@ -8,14 +8,9 @@ services:
 
     ports:
       - "5173:5173"
-    #    volumes:
-    #      - ./user-ui:/app                        # hot-reload: sync local files into container
-    #      - /app/node_modules             # keep container's node_modules untouched
     environment:
       - CHOKIDAR_USEPOLLING=true      # needed for hot-reload on some OS (Windows/WSL)
-      - WATCHPACK_POLLING=true        # needed for Webpack 5 / CRA
     stdin_open: true                  # keeps process alive (needed for CRA)
-
 
   api:
     build:
@@ -25,9 +20,6 @@ services:
       - apparmor:unconfined
     ports:
       - "8001:8001"
-    volumes:
-      - ./api:/app                  # hot-reload: sync local files into container
-      - /app/.venv              # keep container's virtualenv untouched
     environment:
       - ENV=development
     command: uv run fastapi dev app/main.py --host 0.0.0.0 --port 8001
