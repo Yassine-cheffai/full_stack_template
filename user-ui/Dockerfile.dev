@@ -1,0 +1,14 @@
+FROM node:26-alpine3.22
+
+WORKDIR /app
+
+# Install dependencies first (layer caching)
+COPY package*.json ./
+RUN npm install --include=optional --platform=linux --arch=x64 --libc=musl
+
+# Copy source code
+COPY . .
+
+EXPOSE 5173
+
+CMD ["npm", "run", "dev"]

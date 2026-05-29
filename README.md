@@ -5,6 +5,10 @@
 docker compose -f docker-compose.dev.yml up --build 
 ```
 ```sh
+# stop containers
+docker compose -f docker-compose.dev.yml down
+```
+```sh
 # list containers
 docker ps
 ```
