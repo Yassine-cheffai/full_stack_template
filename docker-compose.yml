@@ -21,5 +21,6 @@ services:
     ports:
       - "8001:8001"
     environment:
-      - ENV=development
+      - ENV=production
+      - DATABASE_URL=${DATABASE_URL}
     command: uv run fastapi dev app/main.py --host 0.0.0.0 --port 8001

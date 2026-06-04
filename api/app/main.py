@@ -4,7 +4,7 @@ from api.v1.user import user_router
 from core.config import config
 from db.schema import Base, engine
 
-ENV = config.app_env
+ENV = config.env
 
 Base.metadata.create_all(bind=engine)
 app = FastAPI(title=config.app_name,
