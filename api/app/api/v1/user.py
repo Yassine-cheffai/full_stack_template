@@ -8,6 +8,10 @@ user_router = APIRouter(tags=["User  Management"])
 
 
 def create_user_service() -> UserService:
+    """
+    Create a service to manage users
+    :return: UserService
+    """
     return UserService(session=SessionLocal())
 
 

@@ -8,9 +8,15 @@ services:
 
     ports:
       - "5173:5173"
-    volumes:
-      - ./user-ui:/app                        # hot-reload: sync local files into container
-      - /app/node_modules             # keep container's node_modules untouched
+
+    develop:
+      watch:
+        - action: sync
+          path: ./user-ui
+          target: /app
+        - action: rebuild
+          path: ./user-ui/package.json
+
     environment:
       - CHOKIDAR_USEPOLLING=true      # needed for hot-reload on some OS (Windows/WSL)
       - WATCHPACK_POLLING=true        # needed for Webpack 5 / CRA
@@ -25,9 +31,18 @@ services:
       - apparmor:unconfined
     ports:
       - "8001:8001"
-    volumes:
-      - ./api:/app                  # hot-reload: sync local files into container
-      - /app/.venv              # keep container's virtualenv untouched
+
+    develop:
+      watch:
+        - action: sync
+          path: ./api
+          target: /app
+          ignore:
+            - __pycache__/
+        - action: rebuild
+          path: ./api/pyproject.toml
+
+
     environment:
       - ENV=development
       - DATABASE_URL=sqlite:///./test.db
