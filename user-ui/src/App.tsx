@@ -16,7 +16,7 @@ export default App
 function BasicButtons() {
     return (
         <Stack spacing={2} direction="row">
-            <Button variant="text">Text button</Button>
+            <Button variant="text">Text button blue</Button>
             <Button variant="contained">Contained</Button>
             <Button variant="outlined">Outlined</Button>
         </Stack>

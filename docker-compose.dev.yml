@@ -12,8 +12,19 @@ services:
     develop:
       watch:
         - action: sync
-          path: ./user-ui
-          target: /app
+          path: ./user-ui/src
+          target: /app/src
+
+        - action: sync
+          path: ./user-ui/public
+          target: /app/public
+
+        #        - action: sync+restart
+        #          path: ./user-ui/vite.config.js
+        #
+        #        - action: sync+restart
+        #          path: ./user-ui/.env
+
         - action: rebuild
           path: ./user-ui/package.json
 
