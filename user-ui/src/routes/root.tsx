@@ -1,5 +1,5 @@
 import {Outlet} from "react-router";
-import NavigationBar from "../components/root/NavigationBar.tsx";
+import NavigationBar from "@/components/root/NavigationBar";
 
 
 const Root = () => (
