@@ -6,7 +6,7 @@ const Root = () => (
             <Link to="/">Home</Link>
             <Link to="/about">About</Link>
         </nav>
-        <Outlet/> {/* 👈 this renders the matched child route */}
+        <Outlet/>
     </div>
 );
 
