@@ -1,11 +1,10 @@
-import {Link, Outlet} from "react-router";
+import {Outlet} from "react-router";
+import NavigationBar from "../components/root/NavigationBar.tsx";
+
 
 const Root = () => (
     <div>
-        <nav>
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-        </nav>
+        <NavigationBar/>
         <Outlet/>
     </div>
 );
