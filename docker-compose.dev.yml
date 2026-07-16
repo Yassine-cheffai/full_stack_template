@@ -19,12 +19,6 @@ services:
           path: ./user-ui/public
           target: /app/public
 
-        #        - action: sync+restart
-        #          path: ./user-ui/vite.config.js
-        #
-        #        - action: sync+restart
-        #          path: ./user-ui/.env
-
         - action: rebuild
           path: ./user-ui/package.json
 
@@ -43,6 +37,9 @@ services:
     ports:
       - "8001:8001"
 
+    volumes:
+      - ./api/logs:/app/logs
+
     develop:
       watch:
         - action: sync
@@ -59,3 +56,32 @@ services:
       - DATABASE_URL=sqlite:///./test.db
     command: uv run fastapi dev app/main.py --host 0.0.0.0 --port 8001
     stdin_open: true
+
+
+  prometheus:
+    image: prom/prometheus:latest
+    security_opt:
+      - apparmor:unconfined  # this is to avoid This is a classic issue on Linux machines (especially Ubuntu). It is almost always caused by a conflict between AppArmor (the Linux kernel security module) and the Snap-installed version of Docker. error permission denied when trying to stop the container
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./api/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    depends_on:
+      - api
+
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    depends_on:
+      - prometheus
+
+volumes:
+  grafana-data:
