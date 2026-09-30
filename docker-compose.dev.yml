@@ -82,6 +82,8 @@ services:
       - ./grafana/provisioning:/etc/grafana/provisioning
     depends_on:
       - prometheus
+    security_opt:
+      - apparmor:unconfined
 
 volumes:
   grafana-data:

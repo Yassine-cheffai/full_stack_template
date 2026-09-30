@@ -1,0 +1,17 @@
+info:
+  name: get users
+  type: http
+
+http:
+  method: GET
+  url: http://0.0.0.0:8001/users/
+  headers:
+    - name: accept
+      value: "*/*"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

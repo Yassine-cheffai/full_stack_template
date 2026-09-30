@@ -16,14 +16,12 @@ this project contains the following services:
 
 ### tips:
 
-- adding the following to the docker compose file fix the permission problem that prevent the stopping of a container,
-  this issue occur on ubuntu
+- adding the following to the docker compose file fix the permission problem that prevent the stopping of a container, this issue occur on ubuntu
 
 ```yml
     security_opt:
       - apparmor:unconfined
 ```
 
-- use docker watcher in docker compose dev file to auto-reload file changes, this replaces the old method of using
-  containers
+- use docker watcher in docker compose dev file to auto-reload file changes, this replaces the old method of using volumes.
 - docker watcher not enabled at startup, it needs to be enabled manually

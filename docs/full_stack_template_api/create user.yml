@@ -1,0 +1,21 @@
+info:
+  name: create user
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://0.0.0.0:8001/users/
+  body:
+    type: json
+    data: |-
+      {
+        "first_name": "mohammed"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
