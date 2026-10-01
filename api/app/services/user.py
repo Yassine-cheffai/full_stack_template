@@ -15,7 +15,6 @@ class UserService:
     def list_users(self) -> list[UserRead]:
         """
         Retrieve list of users from DB, convert them to DTOs / Data Transfer Objects and return them
-        :return: list[UserRead]
         """
         query = Select(User)
         result = self._db.execute(query)
@@ -39,7 +38,7 @@ class UserService:
         except Exception as e:
             logger.error(e)
             return None
-        
+
     def create_user(self, user: UserCreate) -> UserRead:
         """
         Create a user, convert the user created to DTO and return it
