@@ -16,6 +16,6 @@ app = FastAPI(
     redoc_url="/redoc" if ENV == "development" else None,
     openapi_url="/openapi.json" if ENV == "development" else None,
 )
-app.include_router(user_router, prefix="/users")
+app.include_router(user_router, prefix="/api/v1/users")
 
 Instrumentator().instrument(app).expose(app)

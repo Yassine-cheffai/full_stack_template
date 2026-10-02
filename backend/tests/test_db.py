@@ -1,7 +1,7 @@
 from sqlalchemy import StaticPool, create_engine
 from sqlalchemy.orm import sessionmaker
 
-from app.db.schema import Base
+from db.schema import Base
 
 # Setup the in-memory SQLite database for testing
 DATABASE_URL = "sqlite:///:memory:"

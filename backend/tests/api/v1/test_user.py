@@ -1,8 +1,8 @@
 from fastapi.testclient import TestClient
 
-from app.api.v1.user import create_user_service
-from app.main import app
-from app.services.user import UserService
+from api.v1.user import create_user_service
+from main import app
+from services.user import UserService
 from tests.test_db import TestingSessionLocal
 
 # Setup the TestClient
@@ -15,7 +15,7 @@ def override_get_user_service():
     yield UserService(session=session)
 
 
-app.dependency_overrides[create_user_service] = override_get_user_service
+app.dependency_overrides[create_user_service] = override_get_user_service  # TODO: it's like it have no effect
 
 
 def test_create_and_get_user():

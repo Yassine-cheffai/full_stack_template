@@ -29,3 +29,9 @@ from db.schema import Base, engine
 Base.metadata.create_all(bind=engine)
 ```
 - delete it once you start using alembic, because alembic will own the schema and make the updates on the DB
+
+
+
+### notes
+#### unit testing:
+- pytest use pytest.ini to load confs, example what is the root path

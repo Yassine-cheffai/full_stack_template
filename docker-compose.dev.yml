@@ -28,9 +28,9 @@ services:
     stdin_open: true                  # keeps process alive (needed for CRA)
 
 
-  api:
+  backend:
     build:
-      context: ./api
+      context: ./backend
       dockerfile: Dockerfile
     security_opt:
       - apparmor:unconfined
@@ -38,22 +38,22 @@ services:
       - "8001:8001"
 
     volumes:
-      - ./api/logs:/app/logs
+      - ./backend/logs:/app/logs  # TODO: why, what about watch ?
 
     develop:
       watch:
         - action: sync
-          path: ./api
+          path: ./backend
           target: /app
           ignore:
             - __pycache__/
         - action: rebuild
-          path: ./api/pyproject.toml
+          path: ./backend/pyproject.toml
 
 
     environment:
       - ENV=development
-      - DATABASE_URL=sqlite:///./test.db
+      - DATABASE_URL=sqlite:////app/app/test.db
     command: uv run fastapi dev app/main.py --host 0.0.0.0 --port 8001
     stdin_open: true
 
@@ -65,9 +65,9 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ./api/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./backend/prometheus.yml:/etc/prometheus/prometheus.yml:ro  # TODO: why not whatch ?
     depends_on:
-      - api
+      - backend
 
 
   grafana:
