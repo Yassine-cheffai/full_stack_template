@@ -46,7 +46,7 @@ class UserService:
         :return: UserRead
         """
         assert isinstance(user, UserCreate), "user must be of type UserCreate"
-        new_user = User(first_name=user.first_name)
+        new_user = User(first_name=user.first_name, last_name=user.last_name)
         self._db.add(new_user)
         self._db.commit()
         self._db.refresh(new_user)

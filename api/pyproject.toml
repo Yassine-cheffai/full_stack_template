@@ -12,8 +12,3 @@ dependencies = [
     "pytest>=9.1.1",
     "sqlalchemy>=2.0.50",
 ]
-
-# pyproject.toml
-# [tool.pytest.ini_options]
-# pythonpath = ["."]
-# pythonpath = ["./app"]

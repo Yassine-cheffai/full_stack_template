@@ -14,13 +14,13 @@ def setup_logging() -> None:
     ```
     """
 
-    os.makedirs("/app/logs", exist_ok=True)  # use absolute path in Docker
+    os.makedirs("logs", exist_ok=True)  # using /app/logs, use absolute path in Docker, this cause issues when testing with pytest, because in the local environment, the interpreter look for that folder in the file system which does not exist
 
     logger = logging.getLogger()  # root logger
     logger.setLevel(logging.INFO)
     logging.getLogger("watchfiles").setLevel(logging.WARNING)
 
-    file_handler = logging.FileHandler("/app/logs/app.log")
+    file_handler = logging.FileHandler("logs/app.log")
     file_handler.setFormatter(
         logging.Formatter("%(asctime)s %(levelname)s [%(name)s] %(message)s")
     )
