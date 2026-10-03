@@ -10,8 +10,9 @@ dependencies = [
     "prometheus-fastapi-instrumentator>=8.0.2",
     "pykernel>=0.1.6",
     "pytest>=9.1.1",
+    "sqladmin[full]>=0.32.0",
     "sqlalchemy>=2.0.50",
 ]
 
 [tool.pyright]
-extraPaths = ["app"]
+extraPaths = ["./backend/app"]
